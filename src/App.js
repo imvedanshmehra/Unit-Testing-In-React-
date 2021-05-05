@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
+import Button from './components/Button/Button';
+import Search from './components/Search/Search';
 
 function App() {
-  const [btnText, setBtnText] = useState('Btn');
   return (
     <div className="App">
-      <input type="text" />
-      <button onClick={() => setBtnText('Btn Clicked!!!')}>{btnText}</button>
+      <Search />
+      <Button />
     </div>
   );
 }
