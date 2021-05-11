@@ -10,3 +10,10 @@ const wrapper = shallow(<Counter />);
 const counterDisplay = wrapper.find("[data-test='counter']");
 expect(counterDisplay.length).toBe(1)
 });
+
+
+test('counte value starts at 0', () =>{
+const wrapper = shallow(<Counter />);
+const counterVal = wrapper.find("[data-test='counter-val']").text();
+expect(counterVal).toBe("0")
+}); 
