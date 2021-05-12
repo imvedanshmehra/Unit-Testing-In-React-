@@ -12,7 +12,9 @@ export default function Counter() {
         <button data-test="increment-btn" onClick={() => setCount(count + 1)}>
           +
         </button>
-        <button>-</button>
+        <button data-test="decrement-btn" onClick={() => setCount(count - 1)}>
+          -
+        </button>
       </span>
     </div>
   );
