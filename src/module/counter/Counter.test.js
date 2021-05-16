@@ -30,15 +30,18 @@ test('increment counter value, on click of increment btn', () => {
   expect(counterVal).toBe('1');
 });
 
-test('decrement counter value, on click of decrement btn', () => {
-  //find decrement btn
+describe('decrement the counter on click of decrement btn, if counter is greater than 0', () => {
   const wrapper = shallow(<Counter />);
-  const decrementBtn = wrapper.find("[data-test='decrement-btn']");
 
-  // click decrement btn
+  // click the increment btn so that counter is greater than 0
+  const incrementBtn = wrapper.find("[data-test='increment-btn']");
+  incrementBtn.simulate('click');
+
+  // find decrement btn and click
+  const decrementBtn = wrapper.find("[data-test='decrement-btn']");
   decrementBtn.simulate('click');
 
-  // increment the counter value
+  // find display and test counter value
   const counterVal = wrapper.find("[data-test='counter-val']").text();
-  expect(counterVal).toBe('-1');
+  expect(counterVal).toBe('0');
 });
