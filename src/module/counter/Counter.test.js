@@ -45,3 +45,49 @@ describe('decrement the counter on click of decrement btn, if counter is greater
   const counterVal = wrapper.find("[data-test='counter-val']").text();
   expect(counterVal).toBe('0');
 });
+
+describe('error when counter goes below 0', () => {
+  test('error does not show when not required', () => {
+    const wrapper = shallow(<Counter />);
+
+    const errorDiv = wrapper.find("[data-test='error-msg']");
+
+    const errorHasHiddenClass = errorDiv.hasClass('hidden');
+    expect(errorHasHiddenClass).toBe(true);
+  });
+});
+
+describe('counter is 0 and decrement btn is clicked', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<Counter />);
+
+    const decrementBtn = wrapper.find("[data-test='decrement-btn']");
+    decrementBtn.simulate('click');
+  });
+
+  test('error shows', () => {
+    const errorDiv = wrapper.find("[data-test='error-msg']");
+
+    const errorHasHiddenClass = errorDiv.hasClass('hidden');
+    expect(errorHasHiddenClass).toBe(false);
+  });
+
+  test('counter still shows 0', () => {
+    const counterVal = wrapper.find("[data-test='counter-val']").text();
+
+    expect(counterVal).toBe('0');
+  });
+
+  test('clicking on increment btn removes the error message', () => {
+    const incrementBtn = wrapper.find("[data-test='increment-btn']");
+
+    incrementBtn.simulate('click');
+
+    const errorDiv = wrapper.find("[data-test='error-msg']");
+
+    const errorHasHiddenClass = errorDiv.hasClass('hidden');
+    expect(errorHasHiddenClass).toBe(true);
+  });
+});
